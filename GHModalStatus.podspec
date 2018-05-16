@@ -20,15 +20,26 @@ Pod::Spec.new do |s|
   s.platform     = :ios
   s.platform     = :ios, "9.0"
 
-
+  s.requires_arc = true
+  s.default_subspec = 'Framework'
+  s.subspec 'Source' do |source|
+      source.source_files  = "GHModalStatus", "GHModalStatus/**/*.{h,m,c,mm,swift}"
+  #   source.prefix_header_file = '/-Prefix.pch'
+      source.resources = ['Release-universal/GHModalStatusBundle.bundle']
+  end
+  s.subspec 'Framework' do |framework|
+      framework.vendored_frameworks = 'Release-universal/GHModalStatusSDK.framework'
+      framework.resources    = ['Release-universal/GHModalStatusBundle.bundle']
+  end
   # s.source       = { :git => "http://EXAMPLE/GHModalStatusView.git", :tag => "#{s.version}" }
   s.source           = { :path => '.'}
-  s.source_files  = "GHModalStatus", "GHModalStatus/**/*.{h,m,swift}"
+
+  # s.dependencies {'AFNetworking'}
 
   # s.public_header_files = "Classes/**/*.h"
 
   # s.resource  = "icon.png"
-  s.resources = "GHModlaStatus/*. {.png ,jpg}"
+  # s.resources = "GHModlaStatus/*. {.png ,jpg,xib}"
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 

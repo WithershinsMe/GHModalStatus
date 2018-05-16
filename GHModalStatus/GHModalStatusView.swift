@@ -69,7 +69,7 @@ class GHModalStatusView: UIView {
         self.contentView.layer.cornerRadius = 10
     }
     func setUpView()  {
-        let bundle = Bundle(for: type(of: self))
+        let bundle = Bundle(for: GHModalStatusView.self)
         let nib = UINib(nibName: nibName, bundle: bundle)
         self.contentView = nib.instantiate(withOwner: self, options: nil).first as! UIView
         addSubview(self.contentView)
